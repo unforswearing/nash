@@ -32,6 +32,7 @@
       font-size: 28px;
       font-weight: bold;
       margin-bottom: 15px;
+      padding: 0px 15px;
       outline: none;
       border: none;
       width: 100%;
@@ -226,10 +227,10 @@
     <div id="filename" contenteditable="plaintext-only" class="file-title"></div>
 
     <div id="toolbar" class="no-print">
-      <button onclick="changeBlock('h1')">H1</button>
-      <button onclick="changeBlock('h2')">H2</button>
-      <button onclick="changeBlock('h3')">H3</button>
-      <button onclick="changeBlock('p')">P</button>
+      <button onclick="changeBlock('h1')">XL</button>
+      <button onclick="changeBlock('h2')">L</button>
+      <button onclick="changeBlock('p')">M</button>
+      <button onclick="changeBlock('small')">S</button>
 
       <button onclick="applyFormat('strong')"><b>B</b></button>
       <button onclick="applyFormat('em')"><i>I</i></button>
@@ -238,16 +239,6 @@
 
       <label for="imageUpload">📷</label>
       <input type="file" id="imageUpload" accept="image/*" onchange="insertImage(event)">
-
-      <select id="textSize" onchange="applyTextSize(this.value)">
-        <option value="">Size</option>
-        <option value="12px">12px</option>
-        <option value="14px">14px</option>
-        <option value="16px">16px</option>
-        <option value="18px">18px</option>
-        <option value="20px">20px</option>
-        <option value="24px">24px</option>
-      </select>
 
       <div class="dropdown">
         <button onclick="toggleDropdown('textColorDropdown')">Color</button>
@@ -311,7 +302,7 @@
     </div>
 
     <div id="footer">
-      <a href="https://github.com/keepworking/nash">nash@github</a>
+      <small><a href="https://github.com/keepworking/nash">nash@github</a></small>
     </div>
   </div>
 
@@ -609,7 +600,7 @@
           editor.replaceChild(p, node);
         }
       });
-      editor.querySelectorAll('p p, h1 p, h2 p, h3 p, h4 p, h5 p, h6 p, p font').forEach(nested => {
+      editor.querySelectorAll('p p, h1 p, h2 p, h3 p, h4 p, h5 p, h6 p, p font, small p').forEach(nested => {
         const parent = nested.parentNode;
         while (nested.firstChild) {
           parent.insertBefore(nested.firstChild, nested);
@@ -660,14 +651,13 @@
 
     editor = document.getElementById('editor');
     filename = document.getElementById('filename');
-    // Intercept Enter key to split the block.
+
     editor.addEventListener('keydown', keydownHandler);
     editor.addEventListener('click', clickHandler);
-
-    // Clean up the structure when the editor loses focus.
     editor.addEventListener('blur', normalizeEditor);
     editor.addEventListener("input", cleanEditor);
     editor.addEventListener("focus", cleanEditor);
+
     filename.addEventListener("input", updateTitle);
 
     updateTitle();

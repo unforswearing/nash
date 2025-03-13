@@ -103,7 +103,7 @@
       display: none;
       position: absolute;
       top: 110%;
-      left: 0;
+      right: 0;
       background: #fff;
       border: 1px solid #ddd;
       padding: 8px;
@@ -136,6 +136,15 @@
     .color-swatch:hover {
       transform: scale(1.1);
       box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+    }
+
+    #saveDropdown {
+      width: 200px;
+    }
+
+    #saveDropdown button {
+      width: 100%;
+      text-align: left;
     }
 
     /* 편집 영역 */
@@ -291,8 +300,16 @@
 
       <div id="splitbar">|</div>
       <!-- Block conversion -->
-      <button onclick="exportToFile(true)">📥 Save</button>
-      <button onclick="exportToFile(false)">📤 Share</button>
+      <div class="dropdown">
+        <button onclick="toggleDropdown('saveDropdown')">💾</button>
+        <div id="saveDropdown" class="dropdown-content">
+          <button onclick="toggleDropdown('saveDropdown'); exportToFile(true, false)">Save</button>
+          <button onclick="toggleDropdown('saveDropdown'); exportToFile(false, false)">Share</button>
+          <button onclick="toggleDropdown('saveDropdown'); exportToFile(true, true)">Save as Read-Only</button>
+          <button onclick="toggleDropdown('saveDropdown'); exportToFile(false, true)">Share as Read-Only</button>
+        </div>
+      </div>
+
     </div>
 
     <div id="editorContainer" class="thin-line">
@@ -308,7 +325,25 @@
 
   <script>
 
-    async function exportToFile(save) {
+    function setPublish(publish) {
+      let editor = document.getElementById("editor");
+      let toolbar = document.getElementById("toolbar");
+      let filename = document.getElementById("filename");
+
+      if (publish) {
+        editor.contentEditable = "false";
+        filename.contentEditable = "false";
+        toolbar.style.display = "none";
+      }
+      else {
+
+        editor.contentEditable = "true";
+        filename.contentEditable = "plaintext-only";
+        toolbar.style.display = "flex";
+      }
+    }
+
+    async function exportToFile(save, publish) {
       let filename = document.getElementById("filename").innerText.trim();
       if (!filename) {
         alert("tilte is empty!");
@@ -317,9 +352,17 @@
 
       filename = filename.endsWith(".html") ? filename : filename + ".html";
 
+      if (publish) {
+        setPublish(true);
+      }
+
       let content = document.documentElement.outerHTML;
       let blob = new Blob(["<!DOCTYPE html>\n" + content], { type: "text/html" });
       let file = new File([blob], filename, { type: "text/html" });
+
+      if (publish) {
+        setPublish(false);
+      }
 
       if (save == false && navigator.canShare && navigator.canShare({ files: [file] })) {
         try {

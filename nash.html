@@ -8,81 +8,112 @@
   <link rel="icon" type="image/svg+xml"
     href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22100%22%20height%3D%22100%22%20viewBox%3D%220%200%20100%20100%22%3E%0A%20%20%3Crect%20width%3D%22100%22%20height%3D%22100%22%20rx%3D%2220%22%20fill%3D%22black%22%2F%3E%0A%20%20%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20font-size%3D%2260%22%20font-weight%3D%22bold%22%20text-anchor%3D%22middle%22%20fill%3D%22white%22%20font-family%3D%22Arial%2C%20sans-serif%22%20dominant-baseline%3D%22central%22%3EN.%3C%2Ftext%3E%0A%3C%2Fsvg%3E">
   <style>
+    :root {
+      --page-bg-color: #f8f9fa;
+      --page-text-color: #333;
 
-    :root   {
-            --page-bg-color:            #f8f9fa;
-            --page-text-color:          #333;
+      --control-bg-color: #f8f9fa;
+      --control-text-color: buttontext;
+      --control-hover-bg-color: #f0f0f0;
+      --control-hover-text-color: #bbb;
 
-            --control-bg-color:         #f8f9fa;
-            --control-text-color:       buttontext;
-            --control-hover-bg-color:   #f0f0f0;
-            --control-hover-text-color: #bbb;
+      --note-bg-color: #fff;
+      --note-placeholer-color: #bbb;
+      --note-link-color: #616161;
 
-            --note-bg-color:            #fff;
-            --note-placeholer-color:    #bbb;
-            --note-link-color:          #616161;
+      --attribution-color: #bbb;
 
-            --attribution-color:        #bbb;
+      /* text background colors */
+      --note-text-color-1: #000000;
+      /* black */
+      --note-text-color-2: #FF3B30;
+      /* red */
+      --note-text-color-3: #FF9500;
+      /* orange */
+      --note-text-color-4: #FFCC00;
+      /* yellow */
+      --note-text-color-5: #4CD964;
+      /* green */
+      --note-text-color-6: #5AC8FA;
+      /* light-blue */
+      --note-text-color-7: #007AFF;
+      /* dark-blue */
+      --note-text-color-8: #5856D6;
+      /* violet */
 
-            /* text background colors */
-            --note-text-color-1:          #000000; /* black */
-            --note-text-color-2:          #FF3B30; /* red */
-            --note-text-color-3:          #FF9500; /* orange */
-            --note-text-color-4:          #FFCC00; /* yellow */
-            --note-text-color-5:          #4CD964; /* green */
-            --note-text-color-6:          #5AC8FA; /* light-blue */
-            --note-text-color-7:          #007AFF; /* dark-blue */
-            --note-text-color-8:          #5856D6; /* violet */
-
-            /* highlight background colors */
-            --note-highlight-color-1:     #FCECEC; /* red */
-            --note-highlight-color-2:     #FFECEB; /* orange */
-            --note-highlight-color-3:     #FFF8E1; /* yellow */
-            --note-highlight-color-4:     #F1FAE5; /* green */
-            --note-highlight-color-5:     #E6F9F0; /* light-blue */
-            --note-highlight-color-6:     #E8F0FE; /* violet */
-            --note-highlight-color-7:     #E7F0FF; /* dark-blue */
-            --note-highlight-color-8:     #F3E8FF; /* purple */
-            }
+      /* highlight background colors */
+      --note-highlight-color-1: #FCECEC;
+      /* red */
+      --note-highlight-color-2: #FFECEB;
+      /* orange */
+      --note-highlight-color-3: #FFF8E1;
+      /* yellow */
+      --note-highlight-color-4: #F1FAE5;
+      /* green */
+      --note-highlight-color-5: #E6F9F0;
+      /* light-blue */
+      --note-highlight-color-6: #E8F0FE;
+      /* violet */
+      --note-highlight-color-7: #E7F0FF;
+      /* dark-blue */
+      --note-highlight-color-8: #F3E8FF;
+      /* purple */
+    }
 
     /* dark mode */
     @media (prefers-color-scheme: dark) {
-        :root                           {
-            --page-bg-color:            #3a3a3a;
-            --page-text-color:          #ddd;
+      :root {
+        --page-bg-color: #3a3a3a;
+        --page-text-color: #ddd;
 
-            --control-bg-color:         #444;
-            --control-text-color:       #aaa;
-            --control-hover-bg-color:   #666;
-            --control-hover-text-color: #eee;
+        --control-bg-color: #444;
+        --control-text-color: #aaa;
+        --control-hover-bg-color: #666;
+        --control-hover-text-color: #eee;
 
-            --note-bg-color:            #333;
-            --note-placeholder-color:   #555;
+        --note-bg-color: #333;
+        --note-placeholder-color: #555;
 
-            /*
+        /*
                TODO: choose nicer colers :-)
             */
 
-            /* text background colors */
-            --note-text-color-1:          #FAFAFA; /* black / white */
-            --note-text-color-2:          #FF3B30; /* red */
-            --note-text-color-3:          #FF9500; /* orange */
-            --note-text-color-4:          #FFCC00; /* yellow */
-            --note-text-color-5:          #4CD964; /* green */
-            --note-text-color-6:          #5AC8FA; /* light-blue */
-            --note-text-color-7:          #007AFF; /* dark-blue */
-            --note-text-color-8:          #5856D6; /* violet */
+        /* text background colors */
+        --note-text-color-1: #FAFAFA;
+        /* black / white */
+        --note-text-color-2: #FF3B30;
+        /* red */
+        --note-text-color-3: #FF9500;
+        /* orange */
+        --note-text-color-4: #FFCC00;
+        /* yellow */
+        --note-text-color-5: #4CD964;
+        /* green */
+        --note-text-color-6: #5AC8FA;
+        /* light-blue */
+        --note-text-color-7: #007AFF;
+        /* dark-blue */
+        --note-text-color-8: #5856D6;
+        /* violet */
 
-            /* highlight background colors */
-            --note-highlight-color-1:     hsl(   0 50% 30% ); /* red */
-            --note-highlight-color-2:     hsl(  30 50% 30% ); /* orange */
-            --note-highlight-color-3:     hsl(  45 50% 30% ); /* yellow */
-            --note-highlight-color-4:     hsl( 120 50% 30% ); /* green */
-            --note-highlight-color-5:     hsl( 240 70% 40% ); /* light-blue */
-            --note-highlight-color-6:     hsl( 300 70% 40% ); /* violet */
-            --note-highlight-color-7:     hsl( 240 50% 30% ); /* dark-blue */
-            --note-highlight-color-8:     hsl( 330 50% 30% ); /* purple */
-        }
+        /* highlight background colors */
+        --note-highlight-color-1: hsl(0 50% 30%);
+        /* red */
+        --note-highlight-color-2: hsl(30 50% 30%);
+        /* orange */
+        --note-highlight-color-3: hsl(45 50% 30%);
+        /* yellow */
+        --note-highlight-color-4: hsl(120 50% 30%);
+        /* green */
+        --note-highlight-color-5: hsl(240 70% 40%);
+        /* light-blue */
+        --note-highlight-color-6: hsl(300 70% 40%);
+        /* violet */
+        --note-highlight-color-7: hsl(240 50% 30%);
+        /* dark-blue */
+        --note-highlight-color-8: hsl(330 50% 30%);
+        /* purple */
+      }
     }
 
     body {
@@ -334,21 +365,29 @@
         <button onclick="toggleDropdown('textColorDropdown')">Color</button>
         <div id="textColorDropdown" class="dropdown-content">
           <div class="swatch-grid">
-            <button class="color-swatch" style="background: var(--note-text-color-1);" onmousedown="event.preventDefault();"
+            <button class="color-swatch" style="background: var(--note-text-color-1);"
+              onmousedown="event.preventDefault();"
               onclick="applyTextColor('1'); toggleDropdown('textColorDropdown')"></button>
-            <button class="color-swatch" style="background: var(--note-text-color-2);" onmousedown="event.preventDefault();"
+            <button class="color-swatch" style="background: var(--note-text-color-2);"
+              onmousedown="event.preventDefault();"
               onclick="applyTextColor('2'); toggleDropdown('textColorDropdown')"></button>
-            <button class="color-swatch" style="background: var(--note-text-color-3);" onmousedown="event.preventDefault();"
+            <button class="color-swatch" style="background: var(--note-text-color-3);"
+              onmousedown="event.preventDefault();"
               onclick="applyTextColor('3'); toggleDropdown('textColorDropdown')"></button>
-            <button class="color-swatch" style="background: var(--note-text-color-4);" onmousedown="event.preventDefault();"
+            <button class="color-swatch" style="background: var(--note-text-color-4);"
+              onmousedown="event.preventDefault();"
               onclick="applyTextColor('4'); toggleDropdown('textColorDropdown')"></button>
-            <button class="color-swatch" style="background: var(--note-text-color-5);" onmousedown="event.preventDefault();"
+            <button class="color-swatch" style="background: var(--note-text-color-5);"
+              onmousedown="event.preventDefault();"
               onclick="applyTextColor('5'); toggleDropdown('textColorDropdown')"></button>
-            <button class="color-swatch" style="background: var(--note-text-color-6);" onmousedown="event.preventDefault();"
+            <button class="color-swatch" style="background: var(--note-text-color-6);"
+              onmousedown="event.preventDefault();"
               onclick="applyTextColor('6'); toggleDropdown('textColorDropdown')"></button>
-            <button class="color-swatch" style="background: var(--note-text-color-7);" onmousedown="event.preventDefault();"
+            <button class="color-swatch" style="background: var(--note-text-color-7);"
+              onmousedown="event.preventDefault();"
               onclick="applyTextColor('7'); toggleDropdown('textColorDropdown')"></button>
-            <button class="color-swatch" style="background: var(--note-text-color-8);" onmousedown="event.preventDefault();"
+            <button class="color-swatch" style="background: var(--note-text-color-8);"
+              onmousedown="event.preventDefault();"
               onclick="applyTextColor('8'); toggleDropdown('textColorDropdown')"></button>
           </div>
         </div>
@@ -359,21 +398,29 @@
         <button onclick="toggleDropdown('highlightDropdown')">Highlight</button>
         <div id="highlightDropdown" class="dropdown-content">
           <div class="swatch-grid">
-            <button class="color-swatch" style="background: var(--note-highlight-color-1);" onmousedown="event.preventDefault();"
+            <button class="color-swatch" style="background: var(--note-highlight-color-1);"
+              onmousedown="event.preventDefault();"
               onclick="applyHighlightColor('1'); toggleDropdown('highlightDropdown')"></button>
-            <button class="color-swatch" style="background: var(--note-highlight-color-2);" onmousedown="event.preventDefault();"
+            <button class="color-swatch" style="background: var(--note-highlight-color-2);"
+              onmousedown="event.preventDefault();"
               onclick="applyHighlightColor('2'); toggleDropdown('highlightDropdown')"></button>
-            <button class="color-swatch" style="background: var(--note-highlight-color-3);" onmousedown="event.preventDefault();"
+            <button class="color-swatch" style="background: var(--note-highlight-color-3);"
+              onmousedown="event.preventDefault();"
               onclick="applyHighlightColor('3'); toggleDropdown('highlightDropdown')"></button>
-            <button class="color-swatch" style="background: var(--note-highlight-color-4);" onmousedown="event.preventDefault();"
+            <button class="color-swatch" style="background: var(--note-highlight-color-4);"
+              onmousedown="event.preventDefault();"
               onclick="applyHighlightColor('4'); toggleDropdown('highlightDropdown')"></button>
-            <button class="color-swatch" style="background: var(--note-highlight-color-5);" onmousedown="event.preventDefault();"
+            <button class="color-swatch" style="background: var(--note-highlight-color-5);"
+              onmousedown="event.preventDefault();"
               onclick="applyHighlightColor('5'); toggleDropdown('highlightDropdown')"></button>
-            <button class="color-swatch" style="background: var(--note-highlight-color-6);" onmousedown="event.preventDefault();"
+            <button class="color-swatch" style="background: var(--note-highlight-color-6);"
+              onmousedown="event.preventDefault();"
               onclick="applyHighlightColor('6'); toggleDropdown('highlightDropdown')"></button>
-            <button class="color-swatch" style="background: var(--note-highlight-color-7);" onmousedown="event.preventDefault();"
+            <button class="color-swatch" style="background: var(--note-highlight-color-7);"
+              onmousedown="event.preventDefault();"
               onclick="applyHighlightColor('7'); toggleDropdown('highlightDropdown')"></button>
-            <button class="color-swatch" style="background: var(--note-highlight-color-8);" onmousedown="event.preventDefault();"
+            <button class="color-swatch" style="background: var(--note-highlight-color-8);"
+              onmousedown="event.preventDefault();"
               onclick="applyHighlightColor('8'); toggleDropdown('highlightDropdown')"></button>
           </div>
         </div>

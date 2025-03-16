@@ -497,7 +497,7 @@
           await navigator.share({
             files: [file],
             title: filename,
-            text: null
+            text: ""
           });
         } catch (error) {
           console.error("share failed:", error);
@@ -793,8 +793,11 @@
     }
 
     function updateTitle() {
-      let filename = document.getElementById("filename").innerHTML.trim();
-      document.title = filename || "Nash : Note as HTML";
+      let filename = document.getElementById("filename");
+      if (filename.innerHTML === "<br>") {
+        filename.innerHTML = "";
+      }
+      document.title = filename.innerHTML.trim() || "Nash : Note as HTML";
     }
 
     function keydownHandler(e) {

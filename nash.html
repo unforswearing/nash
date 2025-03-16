@@ -822,6 +822,11 @@
       }
     }
 
+    function unloadHandler(e) {
+      e.preventDefault()
+      e.returnValue = '';
+    }
+
 
     editor = document.getElementById('editor');
     filename = document.getElementById('filename');
@@ -833,6 +838,8 @@
     editor.addEventListener("focus", cleanEditor);
 
     filename.addEventListener("input", updateTitle);
+
+    window.addEventListener("beforeunload", unloadHandler);
 
     updateTitle();
 

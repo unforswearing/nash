@@ -431,10 +431,10 @@
       <div class="dropdown">
         <button onclick="toggleDropdown('saveDropdown')">💾</button>
         <div id="saveDropdown" class="dropdown-content">
-          <button onclick="toggleDropdown('saveDropdown'); exportToFile(true, false)">Save</button>
-          <button onclick="toggleDropdown('saveDropdown'); exportToFile(false, false)">Share</button>
-          <button onclick="toggleDropdown('saveDropdown'); exportToFile(true, true)">Save as Read-Only</button>
-          <button onclick="toggleDropdown('saveDropdown'); exportToFile(false, true)">Share as Read-Only</button>
+          <button onclick="toggleDropdown('saveDropdown'); exportToFile(true, true)">Save</button>
+          <button onclick="toggleDropdown('saveDropdown'); exportToFile(false, true)">Share</button>
+          <button onclick="toggleDropdown('saveDropdown'); exportToFile(true, false)">Save as Read-Only</button>
+          <button onclick="toggleDropdown('saveDropdown'); exportToFile(false, false)">Share as Read-Only</button>
         </div>
       </div>
 
@@ -453,25 +453,24 @@
 
   <script>
 
-    function setPublish(publish) {
+    function setEditMode(editMode) {
       let editor = document.getElementById("editor");
       let toolbar = document.getElementById("toolbar");
       let filename = document.getElementById("filename");
 
-      if (publish) {
-        editor.contentEditable = "false";
-        filename.contentEditable = "false";
-        toolbar.style.display = "none";
-      }
-      else {
-
+      if (editMode) {
         editor.contentEditable = "true";
         filename.contentEditable = "plaintext-only";
         toolbar.style.display = "flex";
       }
+      else {
+        editor.contentEditable = "false";
+        filename.contentEditable = "false";
+        toolbar.style.display = "none";
+      }
     }
 
-    async function exportToFile(save, publish) {
+    async function exportToFile(save, editMode) {
       let filename = document.getElementById("filename").innerText.trim();
       if (!filename) {
         alert("title is empty!");
@@ -480,16 +479,16 @@
 
       filename = filename.endsWith(".html") ? filename : filename + ".html";
 
-      if (publish) {
-        setPublish(true);
+      if (editMode === false) {
+        setEditMode(false);
       }
 
       let content = document.documentElement.outerHTML;
       let blob = new Blob(["<!DOCTYPE html>\n" + content], { type: "text/html" });
       let file = new File([blob], filename, { type: "text/html" });
 
-      if (publish) {
-        setPublish(false);
+      if (editMode === false) {
+        setEditMode(true);
       }
 
       if (save == false && navigator.canShare && navigator.canShare({ files: [file] })) {
@@ -823,6 +822,9 @@
     }
 
     function unloadHandler(e) {
+      if (document.getElementById("editor").contentEditable !== "true") {
+        return;
+      }
       e.preventDefault()
       e.returnValue = '';
     }
